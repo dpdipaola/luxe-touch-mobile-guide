@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, User, Calendar, Phone, Menu } from 'lucide-react';
+import { Home, User, Phone, Menu } from 'lucide-react';
 
 const MobileNavbar = () => {
   const location = useLocation();
@@ -24,14 +24,6 @@ const MobileNavbar = () => {
         >
           <Home size={22} />
           <span className="text-xs mt-1">Home</span>
-        </Link>
-        
-        <Link 
-          to="/requests" 
-          className={`flex flex-col items-center justify-center w-full h-full ${isActive('/requests') ? 'text-luxe-blue' : 'text-gray-500'}`}
-        >
-          <Calendar size={22} />
-          <span className="text-xs mt-1">Requests</span>
         </Link>
         
         <a 

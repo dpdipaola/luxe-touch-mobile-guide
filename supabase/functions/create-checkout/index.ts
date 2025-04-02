@@ -51,7 +51,7 @@ serve(async (req) => {
           price_data: {
             currency: "usd",
             product_data: { name: "Dominic Luxury Membership" },
-            unit_amount: 700000, // $7,000 in cents
+            unit_amount: 500000, // $5,000 in cents
             recurring: {
               interval: "month"
             }

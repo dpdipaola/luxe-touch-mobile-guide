@@ -1,33 +1,53 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Bell, Search, ArrowRight, MapPin, Calendar, ShoppingBag, Trophy } from 'lucide-react';
 import ServiceCard from './ServiceCard';
-import UpcomingEvent from './UpcomingEvent';
+import { useAuth } from '@/contexts/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
+
+interface ProfileData {
+  first_name: string | null;
+  last_name: string | null;
+  membership_level: string | null;
+}
 
 const Dashboard = () => {
+  const { user } = useAuth();
+  const [profile, setProfile] = useState<ProfileData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      if (!user) return;
+      
+      try {
+        const { data, error } = await supabase
+          .from('profiles')
+          .select('first_name, last_name, membership_level')
+          .eq('id', user.id)
+          .single();
+          
+        if (error) throw error;
+        setProfile(data);
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, [user]);
+
   const services = [
     { id: 1, icon: <MapPin size={24} />, title: 'Travel Experience', path: '/services/travel' },
     { id: 2, icon: <Calendar size={24} />, title: 'Event Access', path: '/services/events' },
     { id: 3, icon: <ShoppingBag size={24} />, title: 'Personal Shopping', path: '/services/shopping' },
   ];
 
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: 'Private Art Gallery Opening',
-      date: 'June 15, 2023',
-      location: 'New York City',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 2,
-      title: 'Luxury Yacht Weekend',
-      date: 'July 8-10, 2023',
-      location: 'Monaco',
-      image: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=80'
-    }
-  ];
+  const userName = profile?.first_name || user?.email?.split('@')[0] || 'Member';
+  const membershipLevel = profile?.membership_level || 'Premium';
 
   return (
     <div className="pb-20">
@@ -35,9 +55,9 @@ const Dashboard = () => {
       <div className="bg-luxe-dark text-white p-6 pt-12 rounded-b-3xl">
         <div className="flex justify-between items-start mb-8">
           <div>
-            <p className="text-gray-300">Good afternoon,</p>
-            <h1 className="text-2xl font-serif font-semibold">Alexander</h1>
-            <p className="text-luxe-gold text-sm">Platinum Member</p>
+            <p className="text-gray-300">Good day,</p>
+            <h1 className="text-2xl font-serif font-semibold">{userName}</h1>
+            <p className="text-luxe-gold text-sm">{membershipLevel} Member</p>
           </div>
           <div className="flex space-x-3">
             <button className="w-10 h-10 rounded-full flex items-center justify-center bg-white/10">
@@ -126,15 +146,29 @@ const Dashboard = () => {
         </div>
         
         <div className="space-y-4">
-          {upcomingEvents.map(event => (
-            <UpcomingEvent 
-              key={event.id}
-              title={event.title}
-              date={event.date}
-              location={event.location}
-              image={event.image}
-            />
-          ))}
+          <div className="luxe-card p-4">
+            <div className="flex justify-between items-center">
+              <div>
+                <h3 className="font-medium text-lg">Private Art Gallery Opening</h3>
+                <p className="text-gray-600 text-sm">June 15, 2023 • New York City</p>
+              </div>
+              <Link to="/events/1" className="text-luxe-blue">
+                <ArrowRight size={20} />
+              </Link>
+            </div>
+          </div>
+          
+          <div className="luxe-card p-4">
+            <div className="flex justify-between items-center">
+              <div>
+                <h3 className="font-medium text-lg">Luxury Yacht Weekend</h3>
+                <p className="text-gray-600 text-sm">July 8-10, 2023 • Monaco</p>
+              </div>
+              <Link to="/events/2" className="text-luxe-blue">
+                <ArrowRight size={20} />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>

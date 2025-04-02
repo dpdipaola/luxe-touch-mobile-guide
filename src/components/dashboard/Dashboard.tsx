@@ -120,11 +120,11 @@ const Dashboard = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="bg-white border border-gray-200 shadow-lg rounded-lg w-56">
               {allServices.map(service => (
-                <DropdownMenuItem key={service.id} asChild>
-                  <Link to={service.path} className="flex items-center p-2 hover:bg-gray-50">
+                <DropdownMenuItem key={service.id} className="cursor-default">
+                  <div className="flex items-center p-2">
                     <span className="mr-2 text-luxe-blue">{service.icon}</span>
                     <span>{service.title}</span>
-                  </Link>
+                  </div>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>

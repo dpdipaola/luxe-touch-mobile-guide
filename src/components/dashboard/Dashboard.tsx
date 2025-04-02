@@ -102,11 +102,18 @@ const Dashboard = () => {
         </div>
       </div>
       
-      {/* Recent Request */}
-      <div className="px-6 mt-8">
-        <h2 className="text-xl font-serif font-semibold mb-4">Your Recent Request</h2>
+      {/* Requests Section - Now taking up the full space where events section was */}
+      <div className="px-6 mt-8 pb-6">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-serif font-semibold">Your Recent Requests</h2>
+          <Link to="/requests" className="text-luxe-blue text-sm flex items-center">
+            View All
+            <ArrowRight size={16} className="ml-1" />
+          </Link>
+        </div>
         
-        <div className="luxe-card">
+        {/* First Recent Request */}
+        <div className="luxe-card mb-4">
           <div className="flex items-center justify-between mb-4">
             <div className="bg-luxe-blue/10 text-luxe-blue p-2 rounded-full">
               <Trophy size={20} />
@@ -133,42 +140,34 @@ const Dashboard = () => {
             View Details
           </Link>
         </div>
-      </div>
-      
-      {/* Upcoming Exclusive Events */}
-      <div className="px-6 mt-8 pb-6">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-serif font-semibold">Exclusive Events</h2>
-          <Link to="/events" className="text-luxe-blue text-sm flex items-center">
-            View All
-            <ArrowRight size={16} className="ml-1" />
-          </Link>
-        </div>
-        
-        <div className="space-y-4">
-          <div className="luxe-card p-4">
-            <div className="flex justify-between items-center">
-              <div>
-                <h3 className="font-medium text-lg">Private Art Gallery Opening</h3>
-                <p className="text-gray-600 text-sm">June 15, 2023 • New York City</p>
-              </div>
-              <Link to="/events/1" className="text-luxe-blue">
-                <ArrowRight size={20} />
-              </Link>
+
+        {/* Second Recent Request */}
+        <div className="luxe-card">
+          <div className="flex items-center justify-between mb-4">
+            <div className="bg-luxe-blue/10 text-luxe-blue p-2 rounded-full">
+              <Calendar size={20} />
             </div>
+            <span className="text-yellow-600 text-sm font-medium bg-yellow-50 px-3 py-1 rounded-full">Pending</span>
           </div>
           
-          <div className="luxe-card p-4">
-            <div className="flex justify-between items-center">
-              <div>
-                <h3 className="font-medium text-lg">Luxury Yacht Weekend</h3>
-                <p className="text-gray-600 text-sm">July 8-10, 2023 • Monaco</p>
-              </div>
-              <Link to="/events/2" className="text-luxe-blue">
-                <ArrowRight size={20} />
-              </Link>
-            </div>
+          <h3 className="font-medium text-lg mb-1">Private Dinner Reservation</h3>
+          <p className="text-gray-600 text-sm mb-4">New York, June 15, 2023</p>
+          
+          <div className="w-full bg-gray-100 h-1 rounded-full mb-3">
+            <div className="bg-luxe-blue h-1 rounded-full" style={{ width: '40%' }}></div>
           </div>
+          
+          <div className="flex justify-between text-sm text-gray-500">
+            <span>Request submitted</span>
+            <span>Awaiting confirmation</span>
+          </div>
+          
+          <Link 
+            to="/requests/details/2" 
+            className="block mt-4 text-center text-luxe-blue font-medium hover:underline"
+          >
+            View Details
+          </Link>
         </div>
       </div>
     </div>
@@ -176,3 +175,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+

@@ -12,8 +12,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import WelcomeScreen from "./components/onboarding/WelcomeScreen";
 import LoginScreen from "./components/onboarding/LoginScreen";
 import Dashboard from "./components/dashboard/Dashboard";
-import ProfileScreen from "./components/profile/ProfileScreen";
-import MenuScreen from "./components/menu/MenuScreen";
 import NotFound from "./pages/NotFound";
 import MembershipPage from "./pages/MembershipPage";
 
@@ -21,10 +19,6 @@ import MembershipPage from "./pages/MembershipPage";
 import TravelService from "./pages/services/TravelService";
 import EventsService from "./pages/services/EventsService";
 import ShoppingService from "./pages/services/ShoppingService";
-
-// Profile Pages
-import PaymentMethods from "./pages/profile/PaymentMethods";
-import AccountSettings from "./pages/profile/AccountSettings";
 
 const queryClient = new QueryClient();
 
@@ -39,23 +33,17 @@ const App = () => (
             {/* Public Routes */}
             <Route path="/" element={<WelcomeScreen />} />
             <Route path="/login" element={<LoginScreen />} />
+            <Route path="/membership" element={<MembershipPage />} />
             
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
               <Route element={<AppLayout />}>
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/membership" element={<MembershipPage />} />
-                <Route path="/profile" element={<ProfileScreen />} />
-                <Route path="/menu" element={<MenuScreen />} />
                 
                 {/* Service Routes */}
                 <Route path="/services/travel" element={<TravelService />} />
                 <Route path="/services/events" element={<EventsService />} />
                 <Route path="/services/shopping" element={<ShoppingService />} />
-                
-                {/* Profile Sub-Routes */}
-                <Route path="/profile/payment" element={<PaymentMethods />} />
-                <Route path="/profile/account" element={<AccountSettings />} />
               </Route>
             </Route>
             

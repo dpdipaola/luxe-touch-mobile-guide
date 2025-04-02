@@ -1,23 +1,21 @@
-
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ChevronRight, ChevronDown, Plane, Calendar, ShoppingBag, Camera, Star, GlassWater, Utensils, Car, HomeIcon } from 'lucide-react';
+import { ChevronRight, ChevronDown, Plane, Calendar, ShoppingBag, Camera, Star, GlassWater, Utensils, Car, HomeIcon, Phone, Mail } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Separator } from '@/components/ui/separator';
 
 const WelcomeScreen = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  // If user is already logged in, redirect to dashboard
   React.useEffect(() => {
     if (user) {
       navigate('/dashboard');
     }
   }, [user, navigate]);
 
-  // Scroll to service section function
   const scrollToServices = () => {
     document.getElementById('services-section')?.scrollIntoView({
       behavior: 'smooth'
@@ -26,7 +24,6 @@ const WelcomeScreen = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-luxe-dark text-white overflow-hidden">
-      {/* Hero Section */}
       <div 
         className="min-h-screen flex flex-col justify-center items-center p-8 bg-center bg-cover"
         style={{ backgroundImage: 'linear-gradient(rgba(26, 31, 44, 0.8), rgba(26, 31, 44, 0.9)), url(https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1440&q=80)' }}
@@ -64,7 +61,6 @@ const WelcomeScreen = () => {
         </Button>
       </div>
       
-      {/* Services Overview Section */}
       <div id="services-section" className="min-h-screen bg-gradient-to-b from-luxe-dark to-zinc-900 py-16 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16 animate-fade-in">
@@ -79,7 +75,6 @@ const WelcomeScreen = () => {
           
           <ScrollArea className="h-[70vh] pr-4 pb-8">
             <div className="space-y-12">
-              {/* Travel Service */}
               <ServiceCard 
                 icon={<Plane className="text-luxe-gold" size={32} />}
                 title="Luxury Travel"
@@ -90,7 +85,6 @@ const WelcomeScreen = () => {
                 ]}
               />
               
-              {/* Events Service */}
               <ServiceCard 
                 icon={<Calendar className="text-luxe-gold" size={32} />}
                 title="Exclusive Events"
@@ -102,7 +96,6 @@ const WelcomeScreen = () => {
                 reverse
               />
               
-              {/* Shopping Service */}
               <ServiceCard 
                 icon={<ShoppingBag className="text-luxe-gold" size={32} />}
                 title="Personal Shopping"
@@ -113,7 +106,6 @@ const WelcomeScreen = () => {
                 ]}
               />
               
-              {/* Fine Dining */}
               <ServiceCard 
                 icon={<Utensils className="text-luxe-gold" size={32} />}
                 title="Fine Dining"
@@ -125,7 +117,6 @@ const WelcomeScreen = () => {
                 reverse
               />
               
-              {/* Luxury Vehicles */}
               <ServiceCard 
                 icon={<Car className="text-luxe-gold" size={32} />}
                 title="Luxury Vehicles"
@@ -136,7 +127,6 @@ const WelcomeScreen = () => {
                 ]}
               />
               
-              {/* Wellness & Spa */}
               <ServiceCard 
                 icon={<GlassWater className="text-luxe-gold" size={32} />}
                 title="Wellness & Spa"
@@ -148,7 +138,6 @@ const WelcomeScreen = () => {
                 reverse
               />
               
-              {/* Luxury Properties */}
               <ServiceCard 
                 icon={<HomeIcon className="text-luxe-gold" size={32} />}
                 title="Luxury Properties"
@@ -159,7 +148,6 @@ const WelcomeScreen = () => {
                 ]}
               />
               
-              {/* Lifestyle Management */}
               <ServiceCard 
                 icon={<Star className="text-luxe-gold" size={32} />}
                 title="Lifestyle Management"
@@ -175,7 +163,6 @@ const WelcomeScreen = () => {
         </div>
       </div>
       
-      {/* Footer */}
       <div className="py-12 px-6 bg-black text-center">
         <h3 className="text-2xl font-serif font-bold mb-6">Join Our Exclusive Membership</h3>
         <p className="text-gray-400 mb-8 max-w-xl mx-auto">
@@ -187,7 +174,21 @@ const WelcomeScreen = () => {
           <ChevronRight size={18} className="ml-2" />
         </Link>
         
-        <div className="mt-12 pt-8 border-t border-gray-800 text-sm text-gray-500">
+        <div className="mt-12 pt-8 border-t border-gray-800">
+          <h4 className="text-xl font-serif font-medium mb-4">Contact Us</h4>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-6">
+            <div className="flex items-center gap-2">
+              <Phone size={18} className="text-luxe-gold" />
+              <span className="text-gray-300">778-789-9874</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Mail size={18} className="text-luxe-gold" />
+              <span className="text-gray-300">concierge@globalluxe.com</span>
+            </div>
+          </div>
+        </div>
+        
+        <div className="mt-6 pt-6 border-t border-gray-800 text-sm text-gray-500">
           <p>By continuing, you agree to our Terms of Service and Privacy Policy</p>
           <p className="mt-2">© {new Date().getFullYear()} Global Luxe Concierge. All rights reserved.</p>
         </div>
@@ -196,7 +197,6 @@ const WelcomeScreen = () => {
   );
 };
 
-// Service Card Component
 const ServiceCard = ({ 
   icon, 
   title, 

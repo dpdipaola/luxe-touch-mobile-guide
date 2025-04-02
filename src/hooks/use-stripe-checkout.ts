@@ -3,13 +3,13 @@ import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
-export type MembershipType = 'standard' | 'premium' | 'elite';
+export type MembershipType = 'premium';
 
 export const useStripeCheckout = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const initiateCheckout = async (membershipType: MembershipType = 'standard') => {
+  const initiateCheckout = async (membershipType: MembershipType = 'premium') => {
     setIsLoading(true);
     
     try {

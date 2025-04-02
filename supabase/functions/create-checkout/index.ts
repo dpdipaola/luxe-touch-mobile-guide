@@ -39,21 +39,6 @@ serve(async (req) => {
       customerId = customers.data[0].id;
     }
 
-    // Parse request body
-    const body = await req.json();
-    const { membershipType } = body;
-
-    // Set price based on membership type (default to standard if not specified)
-    // All memberships are now $7,000 per month for the luxury experience
-    const priceAmount = 700000; // $7,000 in cents
-    let membershipName = "Dominic Luxury Membership";
-    
-    if (membershipType === "premium") {
-      membershipName = "Dominic Premium Luxury Membership";
-    } else if (membershipType === "elite") {
-      membershipName = "Dominic Elite Luxury Membership";
-    }
-
     // Create a Stripe checkout session for subscription
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
@@ -62,8 +47,8 @@ serve(async (req) => {
         {
           price_data: {
             currency: "usd",
-            product_data: { name: membershipName },
-            unit_amount: priceAmount,
+            product_data: { name: "Dominic Luxury Membership" },
+            unit_amount: 700000, // $7,000 in cents
             recurring: {
               interval: "month"
             }

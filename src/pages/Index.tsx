@@ -13,7 +13,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-luxe-dark text-white">
       <div className="text-center">
-        <h1 className="text-4xl font-serif font-bold mb-4">Global Luxe Concierge</h1>
+        <h1 className="text-4xl font-serif font-bold mb-4">Dominic</h1>
         <p className="text-xl text-gray-300">Loading your exclusive experience...</p>
       </div>
     </div>

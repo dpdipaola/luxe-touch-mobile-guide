@@ -30,7 +30,7 @@ const WelcomeScreen = () => {
       >
         <div className="animate-fade-in opacity-0" style={{ animationDelay: '0.3s' }}>
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-center">
-            Global <span className="text-luxe-gold">Luxe</span> Concierge
+            <span className="text-luxe-gold">Dominic</span>
           </h1>
           
           <p className="text-lg text-center text-gray-300 mb-8 max-w-md">
@@ -68,7 +68,7 @@ const WelcomeScreen = () => {
               Experience <span className="text-luxe-gold">Unparalleled</span> Luxury
             </h2>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-              Welcome to Global Luxe Concierge, where your desires meet extraordinary service. 
+              Welcome to Dominic, where your desires meet extraordinary service. 
               We partner with the world's most prestigious companies to offer bespoke experiences.
             </p>
           </div>
@@ -167,7 +167,7 @@ const WelcomeScreen = () => {
         <h3 className="text-2xl font-serif font-bold mb-6">Join Our Exclusive Membership</h3>
         <p className="text-gray-400 mb-8 max-w-xl mx-auto">
           Experience a world where your desires are met with unparalleled service and attention to detail.
-          Global Luxe Concierge—your gateway to a world without limits.
+          Dominic—your gateway to a world without limits.
         </p>
         <Link to="/login" className="luxe-button bg-luxe-gold text-black hover:bg-amber-400 inline-flex items-center">
           Become a Member
@@ -190,7 +190,7 @@ const WelcomeScreen = () => {
         
         <div className="mt-6 pt-6 border-t border-gray-800 text-sm text-gray-500">
           <p>By continuing, you agree to our Terms of Service and Privacy Policy</p>
-          <p className="mt-2">© {new Date().getFullYear()} Global Luxe Concierge. All rights reserved.</p>
+          <p className="mt-2">© {new Date().getFullYear()} Dominic. All rights reserved.</p>
         </div>
       </div>
     </div>

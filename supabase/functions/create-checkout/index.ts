@@ -32,6 +32,9 @@ serve(async (req) => {
       apiVersion: "2023-10-16",
     });
 
+    // Log the request origin for debugging
+    console.log("Request origin:", req.headers.get("origin"));
+    
     // Check if an existing Stripe customer record exists
     const customers = await stripe.customers.list({ email: user.email, limit: 1 });
     let customerId;
@@ -61,11 +64,16 @@ serve(async (req) => {
       cancel_url: `${req.headers.get("origin")}/dashboard?payment=canceled`,
     });
 
+    // Log the created session for debugging
+    console.log("Checkout session created:", session.id);
+    console.log("Checkout URL:", session.url);
+
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
   } catch (error) {
+    console.error("Checkout error:", error);
     return new Response(JSON.stringify({ error: error.message }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 500,

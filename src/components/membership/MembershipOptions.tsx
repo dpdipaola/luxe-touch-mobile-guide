@@ -1,14 +1,17 @@
+
 import React from 'react';
 import { CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useStripeCheckout } from '@/hooks/use-stripe-checkout';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
 
 const MembershipOptions = () => {
   const { initiateCheckout, isLoading } = useStripeCheckout();
   const { user } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
   
   const hasMembership = user ? localStorage.getItem(`membership_${user.id}`) === 'active' : false;
 
@@ -22,6 +25,17 @@ const MembershipOptions = () => {
     'Personal shopping assistance',
     '24/7 global support'
   ];
+
+  const handleCheckout = () => {
+    if (isLoading) return;
+    
+    toast({
+      title: "Processing your request",
+      description: "Preparing your Dominic Luxury membership checkout..."
+    });
+    
+    initiateCheckout('premium');
+  };
 
   if (hasMembership) {
     return (
@@ -89,7 +103,7 @@ const MembershipOptions = () => {
             </ul>
             
             <Button 
-              onClick={() => initiateCheckout('premium')}
+              onClick={handleCheckout}
               disabled={isLoading}
               className="w-full bg-luxe-blue hover:bg-blue-700 text-white"
             >

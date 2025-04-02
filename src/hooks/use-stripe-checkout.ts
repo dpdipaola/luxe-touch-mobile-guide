@@ -26,7 +26,9 @@ export const useStripeCheckout = () => {
           description: 'You will be redirected to the secure payment page',
         });
         
-        // Short delay before redirecting to let the toast appear
+        console.log('Checkout URL received:', data.url);
+        
+        // Ensure the redirect happens with a short delay
         setTimeout(() => {
           window.location.href = data.url;
         }, 1000);

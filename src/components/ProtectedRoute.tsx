@@ -13,25 +13,22 @@ const ProtectedRoute = () => {
 
   useEffect(() => {
     const checkMembership = async () => {
-      if (user && location.pathname !== '/membership') {
+      if (user) {
         setCheckingMembership(true);
         try {
-          // This is a simplified check - in a real app, you would check against a database
-          // to verify the user has purchased a membership
-          
-          // For demo purposes, we'll check if the URL has a successful payment parameter
+          // Check if the URL has a successful payment parameter
           const searchParams = new URLSearchParams(location.search);
           const paymentStatus = searchParams.get('payment');
           
           if (paymentStatus === 'success') {
             setHasMembership(true);
+            localStorage.setItem(`membership_${user.id}`, 'active');
             toast({
               title: "Membership activated",
               description: "Thank you for your purchase! Your membership is now active.",
             });
           } else {
-            // In a real implementation, you would check a members table in your database
-            // For now, we'll just check a local storage flag as a demo
+            // Check localStorage for membership status
             const membershipStatus = localStorage.getItem(`membership_${user.id}`);
             setHasMembership(membershipStatus === 'active');
           }
@@ -72,9 +69,14 @@ const ProtectedRoute = () => {
     return <Navigate to="/login" replace />;
   }
 
-  // Redirect to membership page if authenticated but no membership
-  // Skip this redirect if already on the membership page
-  if (hasMembership === false && location.pathname !== '/membership') {
+  // Only redirect to membership page if:
+  // 1. User has no membership
+  // 2. AND they're not already on the membership page
+  // 3. AND they're trying to access a protected route that isn't one of the public routes
+  const publicRoutes = ['/dashboard', '/membership', '/profile', '/menu'];
+  if (hasMembership === false && 
+      location.pathname !== '/membership' && 
+      !publicRoutes.includes(location.pathname)) {
     return <Navigate to="/membership" replace />;
   }
 

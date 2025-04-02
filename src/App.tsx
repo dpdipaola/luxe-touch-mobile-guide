@@ -16,6 +16,15 @@ import ProfileScreen from "./components/profile/ProfileScreen";
 import MenuScreen from "./components/menu/MenuScreen";
 import NotFound from "./pages/NotFound";
 
+// Services Pages
+import TravelService from "./pages/services/TravelService";
+import EventsService from "./pages/services/EventsService";
+import ShoppingService from "./pages/services/ShoppingService";
+
+// Profile Pages
+import PaymentMethods from "./pages/profile/PaymentMethods";
+import AccountSettings from "./pages/profile/AccountSettings";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -36,6 +45,16 @@ const App = () => (
             <Route path="/chat" element={<ChatScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
             <Route path="/menu" element={<MenuScreen />} />
+            
+            {/* Service Routes */}
+            <Route path="/services/travel" element={<TravelService />} />
+            <Route path="/services/events" element={<EventsService />} />
+            <Route path="/services/shopping" element={<ShoppingService />} />
+            
+            {/* Profile Sub-Routes */}
+            <Route path="/profile/payment" element={<PaymentMethods />} />
+            <Route path="/profile/account" element={<AccountSettings />} />
+            
             {/* Redirect from index to dashboard */}
             <Route index element={<Dashboard />} />
           </Route>

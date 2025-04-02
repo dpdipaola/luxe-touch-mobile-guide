@@ -20,7 +20,7 @@ const MenuScreen = () => {
           <h3 className="font-medium mb-4">Account</h3>
           
           <div className="space-y-1">
-            <Link to="/profile" className="flex items-center justify-between py-3 px-2 hover:bg-gray-50 rounded-lg">
+            <Link to="/profile/account" className="flex items-center justify-between py-3 px-2 hover:bg-gray-50 rounded-lg">
               <div className="flex items-center">
                 <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mr-3">
                   <Settings size={18} />
@@ -30,7 +30,7 @@ const MenuScreen = () => {
               <div className="text-gray-400">›</div>
             </Link>
             
-            <Link to="/dashboard" className="flex items-center justify-between py-3 px-2 hover:bg-gray-50 rounded-lg">
+            <Link to="/profile/payment" className="flex items-center justify-between py-3 px-2 hover:bg-gray-50 rounded-lg">
               <div className="flex items-center">
                 <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 mr-3">
                   <CreditCard size={18} />

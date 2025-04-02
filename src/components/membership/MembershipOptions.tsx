@@ -18,8 +18,8 @@ const membershipTiers: MembershipTier[] = [
   {
     id: 'standard',
     name: 'Standard',
-    price: '$99',
-    description: 'Essential concierge services for the discerning individual.',
+    price: '$7,000/month',
+    description: 'Essential luxury concierge services for the discerning individual.',
     features: [
       'Personal concierge',
       'Restaurant reservations',
@@ -31,7 +31,7 @@ const membershipTiers: MembershipTier[] = [
   {
     id: 'premium',
     name: 'Premium',
-    price: '$199',
+    price: '$7,000/month',
     description: 'Enhanced services with priority access to exclusive events.',
     features: [
       'All Standard features',
@@ -46,7 +46,7 @@ const membershipTiers: MembershipTier[] = [
   {
     id: 'elite',
     name: 'Elite',
-    price: '$499',
+    price: '$7,000/month',
     description: 'The ultimate luxury experience with no limitations.',
     features: [
       'All Premium features',

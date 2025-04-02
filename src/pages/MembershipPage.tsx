@@ -20,33 +20,33 @@ const MembershipPage = () => {
           <div className="flex justify-center mb-4">
             <Shield size={40} className="text-luxe-blue" />
           </div>
-          <h1 className="text-4xl font-serif font-semibold mb-4 text-luxe-dark">Join Dominic Membership</h1>
+          <h1 className="text-4xl font-serif font-semibold mb-4 text-luxe-dark">Join Dominic Exclusive Membership</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Welcome, {user?.email}. Become a member today to unlock a world of luxury services and exclusive benefits.
+            Welcome, {user?.email}. Become a member today to unlock a world of unparalleled luxury services and exclusive benefits.
           </p>
         </div>
 
         <MembershipOptions />
         
         <div className="mt-16 max-w-3xl mx-auto text-center">
-          <h3 className="text-2xl font-serif font-semibold mb-4">Why Join Dominic?</h3>
+          <h3 className="text-2xl font-serif font-semibold mb-4">Experience Absolute Luxury with Dominic</h3>
           <p className="text-lg text-gray-600">
-            Our membership provides access to a network of luxury services, special privileges, and a dedicated team
-            ready to fulfill your requests. Experience the difference that comes with being a Dominic member.
+            Our $7,000 monthly membership provides access to an elite network of luxury services, unrivaled privileges, and a dedicated team
+            of experts ready to fulfill your most ambitious requests. Experience the difference that comes with being a Dominic member.
           </p>
           
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
             <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-100">
               <h4 className="font-serif font-medium text-lg mb-2">Exclusive Access</h4>
-              <p className="text-gray-600">Get access to events, venues, and experiences unavailable to the general public.</p>
+              <p className="text-gray-600">Gain privileged access to events, venues, and experiences completely unavailable to the general public.</p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-100">
               <h4 className="font-serif font-medium text-lg mb-2">Personalized Service</h4>
-              <p className="text-gray-600">Benefit from our team who understands your preferences and anticipates your needs.</p>
+              <p className="text-gray-600">Benefit from our elite team who understands your preferences and anticipates your needs before you even express them.</p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm border border-gray-100">
               <h4 className="font-serif font-medium text-lg mb-2">Global Reach</h4>
-              <p className="text-gray-600">Enjoy our services whether you're at home or traveling around the world.</p>
+              <p className="text-gray-600">Enjoy our premium services whether you're at home or traveling around the world, with 24/7 concierge support.</p>
             </div>
           </div>
         </div>

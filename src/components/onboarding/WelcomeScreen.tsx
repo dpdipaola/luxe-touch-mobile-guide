@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ChevronRight, ChevronDown, Plane, Calendar, ShoppingBag, Camera, Star, GlassWater, Utensils, Car, HomeIcon, Phone, Mail } from 'lucide-react';
+import { ChevronRight, ChevronDown, Plane, Calendar, ShoppingBag, Camera, Star, GlassWater, Utensils, Car, HomeIcon, Phone } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -180,10 +180,6 @@ const WelcomeScreen = () => {
             <div className="flex items-center gap-2">
               <Phone size={18} className="text-luxe-gold" />
               <span className="text-gray-300">778-789-9874</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail size={18} className="text-luxe-gold" />
-              <span className="text-gray-300">concierge@globalluxe.com</span>
             </div>
           </div>
         </div>

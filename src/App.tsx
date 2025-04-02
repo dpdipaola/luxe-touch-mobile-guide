@@ -17,6 +17,7 @@ import RequestsScreen from "./components/requests/RequestsScreen";
 import ProfileScreen from "./components/profile/ProfileScreen";
 import MenuScreen from "./components/menu/MenuScreen";
 import NotFound from "./pages/NotFound";
+import MembershipPage from "./pages/MembershipPage";
 
 // Services Pages
 import TravelService from "./pages/services/TravelService";
@@ -45,6 +46,7 @@ const App = () => (
             <Route element={<ProtectedRoute />}>
               <Route element={<AppLayout />}>
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/membership" element={<MembershipPage />} />
                 <Route path="/requests" element={<RequestsScreen />} />
                 <Route path="/chat" element={<ChatScreen />} />
                 <Route path="/profile" element={<ProfileScreen />} />

@@ -14,7 +14,7 @@ const Index = () => {
     <div className="min-h-screen flex items-center justify-center bg-luxe-dark text-white">
       <div className="text-center">
         <h1 className="text-4xl font-serif font-bold mb-4">Dominic</h1>
-        <p className="text-xl text-gray-300">Loading your exclusive experience...</p>
+        <p className="text-xl text-gray-300">Redirecting to welcome page...</p>
       </div>
     </div>
   );

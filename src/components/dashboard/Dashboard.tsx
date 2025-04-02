@@ -1,10 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Bell, Search, ArrowRight, MapPin, Calendar, ShoppingBag, Trophy } from 'lucide-react';
+import { Bell, Search, ArrowRight, MapPin, Calendar, ShoppingBag, Phone } from 'lucide-react';
 import ServiceCard from './ServiceCard';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
+import { Button } from '@/components/ui/button';
 
 interface ProfileData {
   first_name: string | null;
@@ -49,6 +50,12 @@ const Dashboard = () => {
   const userName = profile?.first_name || user?.email?.split('@')[0] || 'Member';
   const membershipLevel = profile?.membership_level || 'Premium';
 
+  const handleDirectRequest = () => {
+    // Forward to SMS or call functionality
+    const phoneNumber = "7787899874";
+    window.location.href = `tel:${phoneNumber}`;
+  };
+
   return (
     <div className="pb-20">
       {/* Header */}
@@ -72,15 +79,16 @@ const Dashboard = () => {
         <div className="bg-gradient-to-r from-luxe-blue to-blue-600 rounded-xl p-4 shadow-lg">
           <div className="flex justify-between items-center">
             <div>
-              <p className="text-blue-100 text-sm">Your concierge</p>
-              <p className="font-medium">Victoria is ready to assist you</p>
+              <p className="text-blue-100 text-sm">Direct contact</p>
+              <p className="font-medium">Need assistance? Contact us directly</p>
             </div>
-            <Link 
-              to="/chat"
-              className="bg-white rounded-lg px-4 py-2 text-luxe-blue font-medium text-sm"
+            <Button 
+              onClick={handleDirectRequest}
+              className="bg-white rounded-lg px-4 py-2 text-luxe-blue font-medium text-sm flex items-center gap-2"
             >
-              Chat Now
-            </Link>
+              <Phone size={16} />
+              Call Now
+            </Button>
           </div>
         </div>
       </div>
@@ -102,72 +110,32 @@ const Dashboard = () => {
         </div>
       </div>
       
-      {/* Requests Section - Now taking up the full space where events section was */}
+      {/* Make a Direct Request Section */}
       <div className="px-6 mt-8 pb-6">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-serif font-semibold">Your Recent Requests</h2>
-          <Link to="/requests" className="text-luxe-blue text-sm flex items-center">
-            View All
-            <ArrowRight size={16} className="ml-1" />
-          </Link>
+          <h2 className="text-xl font-serif font-semibold">Make a Direct Request</h2>
         </div>
         
-        {/* First Recent Request */}
-        <div className="luxe-card mb-4">
-          <div className="flex items-center justify-between mb-4">
-            <div className="bg-luxe-blue/10 text-luxe-blue p-2 rounded-full">
-              <Trophy size={20} />
-            </div>
-            <span className="text-green-600 text-sm font-medium bg-green-50 px-3 py-1 rounded-full">Confirmed</span>
-          </div>
-          
-          <h3 className="font-medium text-lg mb-1">VIP Formula 1 Grand Prix Access</h3>
-          <p className="text-gray-600 text-sm mb-4">Monaco, May 26-28, 2023</p>
-          
-          <div className="w-full bg-gray-100 h-1 rounded-full mb-3">
-            <div className="bg-luxe-blue h-1 rounded-full" style={{ width: '80%' }}></div>
-          </div>
-          
-          <div className="flex justify-between text-sm text-gray-500">
-            <span>Booking confirmed</span>
-            <span>All set</span>
-          </div>
-          
-          <Link 
-            to="/requests/details/1" 
-            className="block mt-4 text-center text-luxe-blue font-medium hover:underline"
-          >
-            View Details
-          </Link>
-        </div>
-
-        {/* Second Recent Request */}
         <div className="luxe-card">
           <div className="flex items-center justify-between mb-4">
             <div className="bg-luxe-blue/10 text-luxe-blue p-2 rounded-full">
-              <Calendar size={20} />
+              <Phone size={20} />
             </div>
-            <span className="text-yellow-600 text-sm font-medium bg-yellow-50 px-3 py-1 rounded-full">Pending</span>
           </div>
           
-          <h3 className="font-medium text-lg mb-1">Private Dinner Reservation</h3>
-          <p className="text-gray-600 text-sm mb-4">New York, June 15, 2023</p>
+          <h3 className="font-medium text-lg mb-1">Contact Your Personal Concierge</h3>
+          <p className="text-gray-600 text-sm mb-4">Our team is available 24/7 to assist you with any requests.</p>
           
-          <div className="w-full bg-gray-100 h-1 rounded-full mb-3">
-            <div className="bg-luxe-blue h-1 rounded-full" style={{ width: '40%' }}></div>
-          </div>
+          <p className="text-gray-500 text-sm mb-4">
+            Contact us directly at: <span className="font-medium">778-789-9874</span>
+          </p>
           
-          <div className="flex justify-between text-sm text-gray-500">
-            <span>Request submitted</span>
-            <span>Awaiting confirmation</span>
-          </div>
-          
-          <Link 
-            to="/requests/details/2" 
-            className="block mt-4 text-center text-luxe-blue font-medium hover:underline"
+          <Button 
+            onClick={handleDirectRequest}
+            className="w-full bg-luxe-blue text-white py-3 rounded-lg font-medium"
           >
-            View Details
-          </Link>
+            Call Now
+          </Button>
         </div>
       </div>
     </div>
@@ -175,4 +143,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-

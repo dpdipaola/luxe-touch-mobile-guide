@@ -12,7 +12,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import WelcomeScreen from "./components/onboarding/WelcomeScreen";
 import LoginScreen from "./components/onboarding/LoginScreen";
 import Dashboard from "./components/dashboard/Dashboard";
-import ChatScreen from "./components/chat/ChatScreen";
 import RequestsScreen from "./components/requests/RequestsScreen";
 import ProfileScreen from "./components/profile/ProfileScreen";
 import MenuScreen from "./components/menu/MenuScreen";
@@ -48,7 +47,6 @@ const App = () => (
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/membership" element={<MembershipPage />} />
                 <Route path="/requests" element={<RequestsScreen />} />
-                <Route path="/chat" element={<ChatScreen />} />
                 <Route path="/profile" element={<ProfileScreen />} />
                 <Route path="/menu" element={<MenuScreen />} />
                 

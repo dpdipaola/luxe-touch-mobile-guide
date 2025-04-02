@@ -1,13 +1,18 @@
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, User, Calendar, MessageSquare, Menu } from 'lucide-react';
+import { Home, User, Calendar, Phone, Menu } from 'lucide-react';
 
 const MobileNavbar = () => {
   const location = useLocation();
   
   const isActive = (path: string) => {
     return location.pathname === path;
+  };
+
+  const handleCallClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.location.href = 'tel:7787899874';
   };
 
   return (
@@ -29,13 +34,14 @@ const MobileNavbar = () => {
           <span className="text-xs mt-1">Requests</span>
         </Link>
         
-        <Link 
-          to="/chat" 
-          className={`flex flex-col items-center justify-center w-full h-full ${isActive('/chat') ? 'text-luxe-blue' : 'text-gray-500'}`}
+        <a 
+          href="tel:7787899874" 
+          onClick={handleCallClick}
+          className="flex flex-col items-center justify-center w-full h-full text-gray-500"
         >
-          <MessageSquare size={22} />
-          <span className="text-xs mt-1">Chat</span>
-        </Link>
+          <Phone size={22} />
+          <span className="text-xs mt-1">Call</span>
+        </a>
         
         <Link 
           to="/profile" 

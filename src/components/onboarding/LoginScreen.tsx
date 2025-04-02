@@ -3,29 +3,57 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Eye, EyeOff } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/contexts/AuthContext';
 
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { signIn, signUp, user } = useAuth();
 
-  const handleLogin = (e: React.FormEvent) => {
+  // If user is already logged in, redirect to dashboard
+  React.useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, navigate]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate login
-    setTimeout(() => {
-      setIsLoading(false);
-      // For demo purposes, always succeed
+    try {
+      if (isSignUp) {
+        // Handle sign up
+        const { error } = await signUp(email, password);
+        if (error) throw error;
+        toast({
+          title: "Account created",
+          description: "Please check your email to confirm your account.",
+        });
+      } else {
+        // Handle login
+        const { error } = await signIn(email, password);
+        if (error) throw error;
+        toast({
+          title: "Welcome back",
+          description: "You've successfully logged in.",
+        });
+        navigate('/dashboard');
+      }
+    } catch (error: any) {
       toast({
-        title: "Welcome back",
-        description: "You've successfully logged in.",
+        title: "Authentication error",
+        description: error.message || "An error occurred during authentication.",
+        variant: "destructive"
       });
-      navigate('/dashboard');
-    }, 1500);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -39,10 +67,16 @@ const LoginScreen = () => {
       
       <div className="flex-1 flex flex-col justify-center p-8">
         <div className="max-w-md mx-auto w-full">
-          <h1 className="text-3xl font-serif font-semibold mb-2 text-luxe-dark">Welcome Back</h1>
-          <p className="text-gray-500 mb-8">Please log in to access your exclusive services</p>
+          <h1 className="text-3xl font-serif font-semibold mb-2 text-luxe-dark">
+            {isSignUp ? 'Create Account' : 'Welcome Back'}
+          </h1>
+          <p className="text-gray-500 mb-8">
+            {isSignUp 
+              ? 'Register to access exclusive concierge services' 
+              : 'Please log in to access your exclusive services'}
+          </p>
           
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                 Email Address
@@ -63,9 +97,11 @@ const LoginScreen = () => {
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Password
                 </label>
-                <Link to="/forgot-password" className="text-sm text-luxe-blue hover:underline">
-                  Forgot password?
-                </Link>
+                {!isSignUp && (
+                  <Link to="/forgot-password" className="text-sm text-luxe-blue hover:underline">
+                    Forgot password?
+                  </Link>
+                )}
               </div>
               <div className="relative">
                 <input
@@ -100,20 +136,23 @@ const LoginScreen = () => {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  Logging in...
+                  {isSignUp ? 'Creating Account...' : 'Logging in...'}
                 </>
               ) : (
-                'Login'
+                isSignUp ? 'Create Account' : 'Login'
               )}
             </button>
           </form>
           
           <div className="mt-8 text-center">
             <p className="text-gray-600">
-              Don't have an invitation?{' '}
-              <Link to="/contact" className="text-luxe-blue font-medium hover:underline">
-                Contact us
-              </Link>
+              {isSignUp ? 'Already have an account? ' : "Don't have an account? "}
+              <button 
+                onClick={() => setIsSignUp(!isSignUp)} 
+                className="text-luxe-blue font-medium hover:underline"
+              >
+                {isSignUp ? 'Log in' : 'Sign up'}
+              </button>
             </p>
           </div>
         </div>

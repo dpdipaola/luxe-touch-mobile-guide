@@ -1,9 +1,20 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 const WelcomeScreen = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  // If user is already logged in, redirect to dashboard
+  React.useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, navigate]);
+
   return (
     <div className="min-h-screen flex flex-col bg-luxe-dark text-white">
       <div 
@@ -26,8 +37,8 @@ const WelcomeScreen = () => {
             <ChevronRight size={18} className="ml-2" />
           </Link>
           
-          <Link to="/invitation" className="flex items-center justify-center w-full p-3 border border-white/30 rounded-lg hover:bg-white/10 transition-colors">
-            <span>Enter Invitation Code</span>
+          <Link to="/login" className="flex items-center justify-center w-full p-3 border border-white/30 rounded-lg hover:bg-white/10 transition-colors">
+            <span>Create Account</span>
             <ChevronRight size={18} className="ml-2" />
           </Link>
         </div>

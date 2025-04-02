@@ -5,6 +5,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
+import { AuthProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 // Pages
 import WelcomeScreen from "./components/onboarding/WelcomeScreen";
@@ -33,35 +35,36 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<WelcomeScreen />} />
-          <Route path="/login" element={<LoginScreen />} />
-          
-          {/* Protected Routes */}
-          <Route path="/" element={<AppLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/requests" element={<RequestsScreen />} />
-            <Route path="/chat" element={<ChatScreen />} />
-            <Route path="/profile" element={<ProfileScreen />} />
-            <Route path="/menu" element={<MenuScreen />} />
+        <AuthProvider>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<WelcomeScreen />} />
+            <Route path="/login" element={<LoginScreen />} />
             
-            {/* Service Routes */}
-            <Route path="/services/travel" element={<TravelService />} />
-            <Route path="/services/events" element={<EventsService />} />
-            <Route path="/services/shopping" element={<ShoppingService />} />
+            {/* Protected Routes */}
+            <Route element={<ProtectedRoute />}>
+              <Route element={<AppLayout />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/requests" element={<RequestsScreen />} />
+                <Route path="/chat" element={<ChatScreen />} />
+                <Route path="/profile" element={<ProfileScreen />} />
+                <Route path="/menu" element={<MenuScreen />} />
+                
+                {/* Service Routes */}
+                <Route path="/services/travel" element={<TravelService />} />
+                <Route path="/services/events" element={<EventsService />} />
+                <Route path="/services/shopping" element={<ShoppingService />} />
+                
+                {/* Profile Sub-Routes */}
+                <Route path="/profile/payment" element={<PaymentMethods />} />
+                <Route path="/profile/account" element={<AccountSettings />} />
+              </Route>
+            </Route>
             
-            {/* Profile Sub-Routes */}
-            <Route path="/profile/payment" element={<PaymentMethods />} />
-            <Route path="/profile/account" element={<AccountSettings />} />
-            
-            {/* Redirect from index to dashboard */}
-            <Route index element={<Dashboard />} />
-          </Route>
-          
-          {/* 404 Route */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+            {/* 404 Route */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

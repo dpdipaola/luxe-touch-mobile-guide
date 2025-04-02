@@ -13,6 +13,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import ChatScreen from "./components/chat/ChatScreen";
 import RequestsScreen from "./components/requests/RequestsScreen";
 import ProfileScreen from "./components/profile/ProfileScreen";
+import MenuScreen from "./components/menu/MenuScreen";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,9 @@ const App = () => (
             <Route path="/requests" element={<RequestsScreen />} />
             <Route path="/chat" element={<ChatScreen />} />
             <Route path="/profile" element={<ProfileScreen />} />
+            <Route path="/menu" element={<MenuScreen />} />
+            {/* Redirect from index to dashboard */}
+            <Route index element={<Dashboard />} />
           </Route>
           
           {/* 404 Route */}

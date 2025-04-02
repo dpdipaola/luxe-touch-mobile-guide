@@ -10,7 +10,10 @@ interface ServiceCardProps {
 
 const ServiceCard = ({ icon, title, path }: ServiceCardProps) => {
   return (
-    <Link to={path} className="luxe-card flex flex-col items-center text-center hover:shadow-lg transition-shadow">
+    <Link 
+      to={path} 
+      className="luxe-card flex flex-col items-center text-center hover:shadow-lg transition-shadow active:bg-gray-50"
+    >
       <div className="mb-3 text-luxe-blue">{icon}</div>
       <h3 className="text-sm font-medium">{title}</h3>
     </Link>

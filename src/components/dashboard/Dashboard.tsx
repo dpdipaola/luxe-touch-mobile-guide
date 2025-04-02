@@ -1,11 +1,17 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Bell, Search, ArrowRight, MapPin, Calendar, ShoppingBag, Phone } from 'lucide-react';
+import { Bell, Search, ArrowRight, MapPin, Calendar, ShoppingBag, Phone, ChevronDown } from 'lucide-react';
 import ServiceCard from './ServiceCard';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface ProfileData {
   first_name: string | null;
@@ -45,6 +51,16 @@ const Dashboard = () => {
     { id: 1, icon: <MapPin size={24} />, title: 'Travel Experience', path: '/services/travel' },
     { id: 2, icon: <Calendar size={24} />, title: 'Event Access', path: '/services/events' },
     { id: 3, icon: <ShoppingBag size={24} />, title: 'Personal Shopping', path: '/services/shopping' },
+  ];
+
+  // Extended list of all services for the dropdown
+  const allServices = [
+    ...services,
+    { id: 4, icon: <Calendar size={16} />, title: 'Fine Dining', path: '/services/dining' },
+    { id: 5, icon: <Calendar size={16} />, title: 'Wellness & Spa', path: '/services/wellness' },
+    { id: 6, icon: <Calendar size={16} />, title: 'Private Jets', path: '/services/jets' },
+    { id: 7, icon: <Calendar size={16} />, title: 'Yacht Charters', path: '/services/yachts' },
+    { id: 8, icon: <Calendar size={16} />, title: 'Art & Collectibles', path: '/services/art' },
   ];
 
   const userName = profile?.first_name || user?.email?.split('@')[0] || 'Member';
@@ -97,10 +113,22 @@ const Dashboard = () => {
       <div className="px-6 mt-8">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-serif font-semibold">Our Services</h2>
-          <Link to="/services" className="text-luxe-blue text-sm flex items-center">
-            View All
-            <ArrowRight size={16} className="ml-1" />
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="text-luxe-blue text-sm flex items-center">
+              View All
+              <ChevronDown size={16} className="ml-1" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="bg-white border border-gray-200 shadow-lg rounded-lg w-56">
+              {allServices.map(service => (
+                <DropdownMenuItem key={service.id} asChild>
+                  <Link to={service.path} className="flex items-center p-2 hover:bg-gray-50">
+                    <span className="mr-2 text-luxe-blue">{service.icon}</span>
+                    <span>{service.title}</span>
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
         
         <div className="grid grid-cols-3 gap-4">

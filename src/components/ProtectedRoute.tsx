@@ -69,14 +69,14 @@ const ProtectedRoute = () => {
     return <Navigate to="/login" replace />;
   }
 
-  // Only redirect to membership page if:
+  // The key change: Only redirect to membership page if:
   // 1. User has no membership
   // 2. AND they're not already on the membership page
-  // 3. AND they're trying to access a protected route that isn't one of the public routes
-  const publicRoutes = ['/dashboard', '/membership', '/profile', '/menu'];
+  // 3. AND they're trying to access a protected service, not just any route
+  const protectedServices = ['/services/travel', '/services/events', '/services/shopping'];
   if (hasMembership === false && 
       location.pathname !== '/membership' && 
-      !publicRoutes.includes(location.pathname)) {
+      protectedServices.some(route => location.pathname.includes(route))) {
     return <Navigate to="/membership" replace />;
   }
 

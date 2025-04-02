@@ -2,13 +2,14 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 
 const ProtectedRoute = () => {
   const { user, isLoading } = useAuth();
   const [hasMembership, setHasMembership] = useState<boolean | null>(null);
   const [checkingMembership, setCheckingMembership] = useState(false);
   const location = useLocation();
+  const { toast } = useToast();
 
   useEffect(() => {
     const checkMembership = async () => {
@@ -24,6 +25,10 @@ const ProtectedRoute = () => {
           
           if (paymentStatus === 'success') {
             setHasMembership(true);
+            toast({
+              title: "Membership activated",
+              description: "Thank you for your purchase! Your membership is now active.",
+            });
           } else {
             // In a real implementation, you would check a members table in your database
             // For now, we'll just check a local storage flag as a demo
@@ -40,7 +45,7 @@ const ProtectedRoute = () => {
     };
 
     checkMembership();
-  }, [user, location]);
+  }, [user, location, toast]);
 
   // Store successful payment status in local storage
   useEffect(() => {

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
-type MembershipType = 'standard' | 'premium' | 'elite';
+export type MembershipType = 'standard' | 'premium' | 'elite';
 
 export const useStripeCheckout = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +20,16 @@ export const useStripeCheckout = () => {
       if (error) throw error;
       
       if (data?.url) {
-        window.location.href = data.url;
+        // Show a toast before redirecting
+        toast({
+          title: 'Redirecting to checkout',
+          description: 'You will be redirected to the secure payment page',
+        });
+        
+        // Short delay before redirecting to let the toast appear
+        setTimeout(() => {
+          window.location.href = data.url;
+        }, 1000);
       } else {
         throw new Error('No checkout URL returned from server');
       }

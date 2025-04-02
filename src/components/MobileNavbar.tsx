@@ -1,10 +1,11 @@
 
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Home, User, Phone, Menu } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Home, User, Phone, Menu, Info } from 'lucide-react';
 
 const MobileNavbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -13,6 +14,10 @@ const MobileNavbar = () => {
   const handleCallClick = (e: React.MouseEvent) => {
     e.preventDefault();
     window.location.href = 'tel:7787899874';
+  };
+
+  const goToWelcome = () => {
+    navigate('/');
   };
 
   return (
@@ -34,6 +39,14 @@ const MobileNavbar = () => {
           <Phone size={22} />
           <span className="text-xs mt-1">Call</span>
         </a>
+        
+        <button 
+          onClick={goToWelcome}
+          className="flex flex-col items-center justify-center w-full h-full text-gray-500"
+        >
+          <Info size={22} />
+          <span className="text-xs mt-1">About</span>
+        </button>
         
         <Link 
           to="/profile" 

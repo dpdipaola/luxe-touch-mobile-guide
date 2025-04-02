@@ -6,6 +6,7 @@ import { useAuth } from '@/contexts/AuthContext';
 const ProtectedRoute = () => {
   const { user, isLoading } = useAuth();
 
+  // Show loading spinner while checking authentication state
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -14,10 +15,12 @@ const ProtectedRoute = () => {
     );
   }
 
+  // Redirect to login page if not authenticated
   if (!user) {
     return <Navigate to="/login" replace />;
   }
 
+  // Allow access to protected routes if authenticated
   return <Outlet />;
 };
 

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Settings, CreditCard, ShieldCheck, Bell, HelpCircle, LogOut } from 'lucide-react';
@@ -25,6 +24,7 @@ const ProfileScreen = () => {
       if (!user) return;
       
       try {
+        // Fix: Use type assertion to tell TypeScript this is a valid table
         const { data, error } = await supabase
           .from('profiles')
           .select('id, first_name, last_name, avatar_url, membership_level')

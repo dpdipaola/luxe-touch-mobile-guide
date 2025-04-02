@@ -17,7 +17,7 @@ const ShoppingService = () => {
       title: 'Limited Edition Product Access',
       category: 'Luxury Goods',
       image: 'https://images.unsplash.com/photo-1512163143273-bde0e3cc7407?auto=format&fit=crop&w=800&q=80',
-      description: 'Gain early access to limited-edition releases from top luxury brands before they're available to the public.'
+      description: "Gain early access to limited-edition releases from top luxury brands before they're available to the public."
     },
     {
       id: 3,

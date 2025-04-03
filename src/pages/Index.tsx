@@ -1,23 +1,8 @@
 
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import WelcomeScreen from "../components/onboarding/WelcomeScreen";
 
 const Index = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Redirect to the welcome screen
-    navigate("/");
-  }, [navigate]);
-
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-luxe-dark text-white">
-      <div className="text-center">
-        <h1 className="text-4xl font-serif font-bold mb-4">Dominic</h1>
-        <p className="text-xl text-gray-300">Redirecting to welcome page...</p>
-      </div>
-    </div>
-  );
+  return <WelcomeScreen />;
 };
 
 export default Index;

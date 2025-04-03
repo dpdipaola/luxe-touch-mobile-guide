@@ -84,7 +84,7 @@ const MembershipOptions = () => {
             </span>
             <h3 className="font-serif text-2xl font-bold">Dominic Luxury</h3>
             <div className="mt-4 flex justify-center items-end">
-              <span className="text-4xl font-bold">$1,000/month</span>
+              <span className="text-4xl font-bold">$5,599/month</span>
             </div>
           </div>
 

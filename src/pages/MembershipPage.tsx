@@ -53,7 +53,7 @@ const MembershipPage = () => {
         <div className="mt-16 max-w-3xl mx-auto text-center">
           <h3 className="text-2xl font-serif font-semibold mb-4">Experience Absolute Luxury with Dominic</h3>
           <p className="text-lg text-gray-600">
-            Our $1,000 monthly membership provides access to an elite network of luxury services, unrivaled privileges, and a dedicated team
+            Our $5,599 monthly membership provides access to an elite network of luxury services, unrivaled privileges, and a dedicated team
             of experts ready to fulfill your most ambitious requests. Experience the difference that comes with being a Dominic member.
           </p>
           

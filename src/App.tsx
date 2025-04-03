@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Index from "./pages/Index";
 
 // Pages
 import WelcomeScreen from "./components/onboarding/WelcomeScreen";
@@ -32,8 +31,7 @@ const App = () => (
         <AuthProvider>
           <Routes>
             {/* Public Routes */}
-            <Route path="/" element={<Index />} />
-            <Route path="/welcome" element={<WelcomeScreen />} />
+            <Route path="/" element={<WelcomeScreen />} />
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/membership" element={<MembershipPage />} />
             

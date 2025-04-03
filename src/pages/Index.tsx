@@ -1,7 +1,7 @@
 
 import { Navigate } from "react-router-dom";
 
-// This file now simply redirects to the root route
+// This file redirects to the root route where WelcomeScreen is rendered
 const Index = () => {
   return <Navigate to="/" replace />;
 };

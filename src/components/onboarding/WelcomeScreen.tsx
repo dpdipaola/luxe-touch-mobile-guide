@@ -1,8 +1,22 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, ChevronDown } from 'lucide-react';
+import { 
+  ChevronRight, 
+  ChevronDown, 
+  Plane, 
+  Calendar, 
+  ShoppingBag, 
+  Utensils,
+  Car, 
+  GlassWater, 
+  Home as HomeIcon, 
+  Star, 
+  Phone 
+} from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 const WelcomeScreen = () => {
   const { user } = useAuth();

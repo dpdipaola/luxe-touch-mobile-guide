@@ -30,27 +30,6 @@ const Index = () => {
           </p>
         </div>
         
-        <div className="w-full max-w-md space-y-4 animate-fade-in opacity-0" style={{ animationDelay: '0.6s' }}>
-          {user ? (
-            <Link to="/dashboard" className="bg-luxe-blue text-white w-full flex items-center justify-center rounded-lg p-4 hover:bg-blue-600 transition-colors">
-              <span className="text-lg">Go to Dashboard</span>
-              <ChevronRight size={20} className="ml-2" />
-            </Link>
-          ) : (
-            <>
-              <Link to="/login" className="bg-luxe-blue text-white w-full flex items-center justify-center rounded-lg p-4 hover:bg-blue-600 transition-colors">
-                <span className="text-lg">Member Login</span>
-                <ChevronRight size={20} className="ml-2" />
-              </Link>
-              
-              <Link to="/login" className="flex items-center justify-center w-full p-4 border border-white/30 rounded-lg hover:bg-white/10 transition-colors">
-                <span className="text-lg">Create Account</span>
-                <ChevronRight size={20} className="ml-2" />
-              </Link>
-            </>
-          )}
-        </div>
-
         <div className="mt-12 animate-fade-in opacity-0" style={{ animationDelay: '0.9s' }}>
           <Link to="/welcome" className="flex items-center text-white/80 hover:text-white">
             <span className="mr-2">Explore Our Services</span>

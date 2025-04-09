@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -44,24 +43,12 @@ const WelcomeScreen = () => {
             Exclusive, personalized services for discerning individuals across the globe.
           </p>
         </div>
-        
-        <div className="w-full max-w-md space-y-4 animate-fade-in opacity-0" style={{ animationDelay: '0.6s' }}>
-          <Link to="/login" className="bg-luxe-blue text-white w-full flex items-center justify-center rounded-lg p-4 hover:bg-blue-600 transition-colors">
-            <span className="text-lg">Member Login</span>
-            <ChevronRight size={20} className="ml-2" />
-          </Link>
-          
-          <Link to="/login" className="flex items-center justify-center w-full p-4 border border-white/30 rounded-lg hover:bg-white/10 transition-colors">
-            <span className="text-lg">Create Account</span>
-            <ChevronRight size={20} className="ml-2" />
-          </Link>
-        </div>
 
         <Button 
           variant="ghost" 
           onClick={scrollToServices}
-          className="mt-16 animate-fade-in opacity-0 flex flex-col items-center text-white/70 hover:text-white"
-          style={{ animationDelay: '0.9s' }}
+          className="mt-6 animate-fade-in opacity-0 flex flex-col items-center text-white/70 hover:text-white"
+          style={{ animationDelay: '0.6s' }}
         >
           <span className="mb-2 text-lg">Explore Our Services</span>
           <ChevronDown className="animate-bounce" />
@@ -171,15 +158,11 @@ const WelcomeScreen = () => {
       </div>
       
       <div className="py-12 px-6 bg-black text-center">
-        <h3 className="text-2xl font-serif font-bold mb-6">Join Our Exclusive Membership</h3>
+        <h3 className="text-2xl font-serif font-bold mb-6">Discover Unparalleled Luxury</h3>
         <p className="text-gray-400 mb-8 max-w-xl mx-auto">
-          Experience a world where your desires are met with unparalleled service and attention to detail.
+          Experience a world where your desires are met with extraordinary service and attention to detail.
           Dominic—your gateway to a world without limits.
         </p>
-        <Link to="/login" className="luxe-button bg-luxe-gold text-black hover:bg-amber-400 inline-flex items-center">
-          Become a Member
-          <ChevronRight size={18} className="ml-2" />
-        </Link>
         
         <div className="mt-12 pt-8 border-t border-gray-800">
           <h4 className="text-xl font-serif font-medium mb-4">Contact Us</h4>

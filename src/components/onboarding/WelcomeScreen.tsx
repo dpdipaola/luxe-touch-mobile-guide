@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  ChevronRight, 
   ChevronDown, 
   Plane, 
   Calendar, 
@@ -13,13 +12,10 @@ import {
   Star, 
   Phone 
 } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 const WelcomeScreen = () => {
-  const { user } = useAuth();
-  
   const scrollToServices = () => {
     document.getElementById('services-section')?.scrollIntoView({
       behavior: 'smooth'

@@ -1,17 +1,9 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ChevronRight, 
-  ChevronDown,
-  ArrowRight
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useAuth } from '@/contexts/AuthContext';
+import { ArrowRight } from 'lucide-react';
 
 const Index = () => {
-  const { user } = useAuth();
-  
   return (
     <div className="min-h-screen flex flex-col bg-luxe-dark text-white">
       <div 

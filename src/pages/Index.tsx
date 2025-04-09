@@ -99,8 +99,8 @@ const partners = [
   },
   {
     name: "Yacht Charters",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
-    description: "Luxury maritime experiences"
+    image: "public/lovable-uploads/0d18d442-cbda-4b2e-acd8-401aabee6978.png",
+    description: "SuperYachtsMonaco - Luxury maritime experiences"
   }
 ];
 

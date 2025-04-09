@@ -30,7 +30,7 @@ const Index = () => {
         </div>
       </div>
 
-      {/* Partners Section */}
+      {/* Partners Section - Updated Format */}
       <div className="py-16 px-6 bg-gradient-to-b from-black to-luxe-dark">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 animate-fade-in">
@@ -42,18 +42,16 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
-            {/* Partner logos - using placeholder grayscale logos with hover effect */}
-            <PartnerLogo name="Luxury Hotels" image="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=600&q=80" />
-            <PartnerLogo name="Private Jets" image="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" />
-            <PartnerLogo name="Fine Dining" image="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=600&q=80" />
-            <PartnerLogo name="Luxury Retail" image="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80" />
-            <PartnerLogo name="Event Management" image="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=600&q=80" />
-            <PartnerLogo name="Wellness Retreats" image="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&w=600&q=80" />
-            <PartnerLogo name="Luxury Vehicles" image="https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=600&q=80" />
-            <PartnerLogo name="Art Galleries" image="https://images.unsplash.com/photo-1473091534298-04dcbce3278c?auto=format&fit=crop&w=600&q=80" />
-            <PartnerLogo name="Exclusive Clubs" image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" />
-            <PartnerLogo name="Yacht Charters" image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80" />
+          <div className="flex flex-wrap justify-center gap-6">
+            {/* Partner logos - updated horizontal format with larger logos */}
+            {partners.map((partner) => (
+              <PartnerLogoCard 
+                key={partner.name}
+                name={partner.name} 
+                image={partner.image}
+                description={partner.description} 
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -67,19 +65,61 @@ const Index = () => {
   );
 };
 
-// Component for partner logos with hover effect
-const PartnerLogo = ({ name, image }) => {
+// Updated partners list - removed Art Galleries, Fine Dining, and Wellness Retreats
+const partners = [
+  {
+    name: "Luxury Hotels",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=600&q=80",
+    description: "5-star accommodations worldwide"
+  },
+  {
+    name: "Private Jets",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80",
+    description: "Premium air travel solutions"
+  },
+  {
+    name: "Luxury Retail",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80",
+    description: "Exclusive shopping experiences"
+  },
+  {
+    name: "Event Management",
+    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=600&q=80",
+    description: "Prestigious event planning"
+  },
+  {
+    name: "Luxury Vehicles",
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?auto=format&fit=crop&w=600&q=80",
+    description: "Premium automotive services"
+  },
+  {
+    name: "Exclusive Clubs",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80",
+    description: "Members-only access worldwide"
+  },
+  {
+    name: "Yacht Charters",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
+    description: "Luxury maritime experiences"
+  }
+];
+
+// Updated partner logo component with card format
+const PartnerLogoCard = ({ name, image, description }) => {
   return (
-    <div className="flex flex-col items-center justify-center group">
-      <div className="h-20 w-full mb-2 relative overflow-hidden rounded-md bg-black/20 backdrop-blur-sm flex items-center justify-center p-4">
+    <div className="w-[280px] bg-black/30 backdrop-blur-sm rounded-xl overflow-hidden border border-white/5 hover:border-luxe-gold/30 transition-all duration-300 group">
+      <div className="h-40 overflow-hidden relative">
         <img 
           src={image} 
-          alt={`${name} logo`}
-          className="max-h-full max-w-full object-contain filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+          alt={`${name}`}
+          className="w-full h-full object-cover filter grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
         />
-        <div className="absolute inset-0 border border-white/10 group-hover:border-luxe-gold/30 rounded-md transition-colors duration-300"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+        <h3 className="absolute bottom-3 left-4 text-xl font-medium text-white group-hover:text-luxe-gold transition-colors duration-300">{name}</h3>
       </div>
-      <p className="text-xs text-gray-500 group-hover:text-luxe-gold transition-colors duration-300">{name}</p>
+      <div className="p-4">
+        <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">{description}</p>
+      </div>
     </div>
   );
 };
